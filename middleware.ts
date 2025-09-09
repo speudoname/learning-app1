@@ -1,15 +1,7 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { clerkMiddleware } from "@clerk/nextjs/server";
 
-const isPublicRoute = createRouteMatcher([
-  '/app1/sign-in(.*)',
-  '/app1/sign-up(.*)',
-]);
-
-export default clerkMiddleware(async (auth, req) => {
-  if (!isPublicRoute(req)) {
-    await auth.protect();
-  }
-});
+// Simple middleware - authentication is handled by the main app
+export default clerkMiddleware();
 
 export const config = {
   matcher: [
